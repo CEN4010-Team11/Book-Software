@@ -28,28 +28,29 @@ public class Config
             User user5 = new User("grace111@gmail.com", "princess2", "Grace", "600 maple street");
 
             //create and implement author classes before putting them as parameters for the books
-            Author jkRowling = new Author("J.K.", "Rowling", "", "Bloomsbury");
-            Author jrrTolkien = new Author("J.R.R.", "Tolkien", "", "Harper Collins");
-            Author stephenKing = new Author("Stephen", "King", "", "");
-            Author lemonySnicket = new Author("Lemony", "Snicket", "", "");
-            Author rekiKawaraha = new Author("Reki", "Kawaraha", "", "");
-            Author mattHaig = new Author("Matt", "Haig", "", "");
-            Author kyungSookShin = new Author("Kyung-Sook", "Shin", "", "");
-            Author minJinLee = new Author("Min Jin", "Lee", "", "");
-            Author ginjerClarke = new Author("Ginjer", "Clarke", "", "");
-            Author rifujinNaMagonote = new Author("Rifujin", "Na Magonote", "", "");
-            Author yuriKitayama = new Author("Yuri", "Kitayama", "", "");
-            Author okinaBaba = new Author("Okina", "Baba", "", "");
-            Author wataruWatari = new Author("Wataru", "Watari", "", "");
-            Author rickRiordan = new Author("Rick", "Riordan", "", "");
-            Author ryoShirakome = new Author("Ryo", "Shirakome", "", "");
-            Author alexPine = new Author("Alex", "Pine", "", "");
-            Author gilesTremlett = new Author("Giles", "Tremlett", "", "");
-            Author yuyukoTakemiya = new Author("Yuyuko", "Takemiya", "", "");
-            Author aoJyumonji = new Author("Ao", "Jyumonji", "", "");
-            Author fujinoOmori = new Author("Fujino", "Omori", "", "");
-            Author anekoYusagi = new Author("Aneko", "Yusagi", "", "");
-            Author natsumeAkatsuki = new Author("Natsume", "Akatsuki", "", "");
+            Author jkRowling = new Author("J.K.", "Rowling", "Makes a lot of fiction.", "Bloomsbury");
+            Author jrrTolkien = new Author("J.R.R.", "Tolkien", "Great non-fiction.", "Harper Collins");
+            Author stephenKing = new Author("Stephen", "King", "Has 10 top sellers.", "John Whitkins");
+            Author lemonySnicket = new Author("Lemony", "Snicket", "One of the best books.", "Further Down");
+            Author rekiKawaraha = new Author("Reki", "Kawaraha", "Great stories from real events.", "Kite Productions");
+            Author mattHaig = new Author("Matt", "Haig", "Absolutely top seller.", "Bloomsbury");
+            Author kyungSookShin = new Author("Kyung-Sook", "Shin", "All about the jungles.", "Starful");
+            Author minJinLee = new Author("Min Jin", "Lee", "Has all the opportunities.", "Smart Fountain");
+            Author ginjerClarke = new Author("Ginjer", "Clarke", "Great at plotlines.", "Realism");
+            Author rifujinNaMagonote = new Author("Rifujin", "Na Magonote", "Most creative.", "Bloomsbury");
+            Author yuriKitayama = new Author("Yuri", "Kitayama", "Makes you feel in the story.", "Starful");
+            Author okinaBaba = new Author("Okina", "Baba", "Best emotions in books.", "Dustful");
+            Author wataruWatari = new Author("Wataru", "Watari", "Best storyline creativity", "Harper Collins");
+            Author rickRiordan = new Author("Rick", "Riordan", "Great for fictional.", "Starful");
+            Author ryoShirakome = new Author("Ryo", "Shirakome", "Best science fiction.", "Smart Fountain");
+            Author alexPine = new Author("Alex", "Pine", "All the great books.", "Kite Productions");
+            Author gilesTremlett = new Author("Giles", "Tremlett", "Great reads.", "Realism");
+            Author yuyukoTakemiya = new Author("Yuyuko", "Takemiya", "Great stories.", "Harper Collins");
+            Author aoJyumonji = new Author("Ao", "Jyumonji", "Best genres.", "John Whitkins");
+            Author fujinoOmori = new Author("Fujino", "Omori", "Variety of genres.", "Further Down");
+            Author anekoYusagi = new Author("Aneko", "Yusagi", "Best books based on romance.", "Kite Productions");
+            Author natsumeAkatsuki = new Author("Natsume", "Akatsuki", "10 great picks.", "Bloomsbury");
+
 
             //add books by declaring their ISBN, title, author, genre, description,
             //publisher, year of publication, and price in that order
