@@ -87,4 +87,9 @@ public class BookService {
         PageRequest pageRequest = PageRequest.of(0, 10, Sort.by("sales").descending());
         return bookRepository.findAll(pageRequest);
     }
+    
+    public Optional<Book> getBookByISBN(String ISBN) {
+        Optional<Book> book = bookRepository.findBookByISBN(ISBN);
+        return book;
+    }
 }
