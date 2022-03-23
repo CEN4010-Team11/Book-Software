@@ -65,4 +65,10 @@ public class BookController {
         return bookService.getBookByISBN(ISBN);
     }
 
+    @GetMapping("genre/{genre}")
+    public List<Book> getBooksByGenre(@PathVariable String genre)
+    {
+        return bookService.getBooksByGenre(genre);
+    }
+
 }
