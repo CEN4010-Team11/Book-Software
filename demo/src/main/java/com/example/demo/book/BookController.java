@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/book")
@@ -58,12 +59,10 @@ public class BookController {
     public Page<Book> getTopSellers(){
         return bookService.getTopSellers();
     }
-    
+
     @GetMapping("/ISBN/{ISBN}")
     public Optional<Book> getBookByISBN(@PathVariable String ISBN) {
-        return bookService.getBookByISBN(ISBN); 
+        return bookService.getBookByISBN(ISBN);
     }
-
-
 
 }
