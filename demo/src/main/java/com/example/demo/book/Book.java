@@ -89,6 +89,19 @@ public class Book
         this.sales = sales;
     }
 
+    public Book(String ISBN, String title, Author author, String genre, String description, String publisher, int year_published, double price, int sales, double rating) {
+        this.ISBN = ISBN;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.description = description;
+        this.publisher = publisher;
+        this.year_published = year_published;
+        this.price = price;
+        this.sales = sales;
+        this.rating = rating;
+    }
+
     @Autowired
     public Book(String ISBN, String title, String genre, String description, String publisher, int year_published, double price, int sales) {
         this.ISBN = ISBN;
