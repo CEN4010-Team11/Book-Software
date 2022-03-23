@@ -1,7 +1,5 @@
 package com.example.demo.book;
 
-import com.example.demo.author.Author;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -17,5 +15,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     Optional<Book> findBookByISBN(String ISBN);
 //    @Query("SELECT b FROM Book b JOIN author ON b.author_id = author.id WHERE b.author_id = ?1")
     List<Book> findBooksByAuthor_Id(Long author_id);
-    List<Book> findBooksByGenre(String genre);
+
+    List<Book> findBooksByGenreContainingIgnoreCase(String genre);
 }
