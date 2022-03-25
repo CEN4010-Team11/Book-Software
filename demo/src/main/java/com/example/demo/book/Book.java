@@ -102,7 +102,6 @@ public class Book
         this.rating = rating;
     }
 
-    @Autowired
     public Book(String ISBN, String title, String genre, String description, String publisher, int year_published, double price, int sales) {
         this.ISBN = ISBN;
         this.title = title;
@@ -114,7 +113,6 @@ public class Book
         this.sales = sales;
     }
 
-    @Autowired
     public Book(String ISBN, String title, Author author, String genre, String publisher, int year_published, double price) {
         this.ISBN = ISBN;
         this.title = title;
