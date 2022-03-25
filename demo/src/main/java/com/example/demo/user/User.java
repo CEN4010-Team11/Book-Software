@@ -1,4 +1,5 @@
 package com.example.demo.user;
+import com.example.demo.cart.Cart;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -40,12 +41,12 @@ public class User {
 //    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = {CascadeType.ALL})
 //    private List<Wishlist> wishlists = new ArrayList<>();
 
-//    @OneToOne
-//    @JoinColumn(
-//            name = "cart_id",
-//            referencedColumnName = "id"
-//    )
-//    private Cart cart = new Cart();
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(
+            name = "cart_id",
+            referencedColumnName = "id"
+    )
+    private Cart cart;
 
 
     public User() {
@@ -95,7 +96,23 @@ public class User {
         this.address = address;
     }
 
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void createCart(){
+        Cart newCart = new Cart();
+        this.setCart(newCart);
+        newCart.setUser(this);
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     //include cart and wishlists when ready
+
+
     @Override
     public String toString() {
         return "User{" +
@@ -104,6 +121,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
+                ", cart=" + cart +
                 '}';
     }
 }
