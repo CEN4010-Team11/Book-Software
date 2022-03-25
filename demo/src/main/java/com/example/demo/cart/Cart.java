@@ -1,7 +1,4 @@
-
-
 package com.example.demo.cart;
-
 
 import com.example.demo.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +10,9 @@ import java.util.ArrayList;
 public class Cart {
     @OneToOne
     @JoinColumn(
-        name = "user_id", 
-        referencedColumnName = "id"
-        )
+            name = "user_id",
+            referencedColumnName = "id"
+    )
     private User user;
     @Id
     @SequenceGenerator(
@@ -37,7 +34,7 @@ public class Cart {
     public Cart(User user){
         this.user = user;
     }
-    
+
     public void addBook(Book title){
         bookList.add(title);
 
@@ -50,8 +47,8 @@ public class Cart {
     }
     public ArrayList<Book> getList(){
         return bookList;
-    }    
-    
+    }
+
     public void removeBook(Book name){
         bookList.remove(name);
     }
@@ -62,8 +59,15 @@ public class Cart {
     public void printList(){
         System.out.println("Book List:" + bookList);
     }
+
     @Override
-    public String toString(){
-        return "User" + user + "What you want to do? 1.Purchase 2.Add Book 3.Delete Book 4.Show Current Books";
+    public String toString() {
+        return "Cart{" +
+                "user=" + user +
+                ", ID=" + ID +
+                ", salesNumber=" + salesNumber +
+                ", title='" + title + '\'' +
+                ", bookList=" + bookList +
+                '}';
     }
 }
