@@ -1,5 +1,5 @@
 
-package com.example.demo.book;
+package com.example.demo.cart;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,26 +7,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.*;
 import java.util.ArrayList;
 
-public class ShoppingCart {
-    private String user;
+public class Cart {
+    @OneToOne
+    @JoinColumn(
+        name = "user_id", 
+        referencedColumnName = "id"
+        )
+    private User user;
     private int salesNumber;
-    //private Book book;
     private String title;
     ArrayList<String> bookList = new ArrayList<>();
-    public ShoppingCart(){}
-    public ShoppingCart(String user){
+    public Cart(){}
+    public Cart(String user){
         this.user = user;
     }
-
-    /* public void setBook(Book book){
-        this.book = book;
-    } */
-    public void setTitle(String title){
-        this.title = title;
+    
+    public void addBook(Book title){
         bookList.add(title);
 
     }
-    public void remove(String name){
+    public void setUser(User user){
+        this.user = user;
+    }
+    public User getUser(){
+        return user;
+    }
+    public ArrayList<String> getList(){
+        return bookList;
+    }    
+    
+    public void removeBook(Book name){
         bookList.remove(new String(name));
     }
     public void purchase(){
