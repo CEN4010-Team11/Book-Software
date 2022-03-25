@@ -1,6 +1,8 @@
 package com.example.demo.cart;
 
 import com.example.demo.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.book.Book;
 import javax.persistence.*;
@@ -13,7 +15,9 @@ public class Cart {
             name = "user_id",
             referencedColumnName = "id"
     )
+    @JsonIgnoreProperties({"cart", "password", "address"})
     private User user;
+
     @Id
     @SequenceGenerator(
             name = "cart_sequence",
@@ -29,8 +33,11 @@ public class Cart {
     private Long ID;
     private int salesNumber;
     private String title;
-    ArrayList<Book> bookList = new ArrayList<>();
+
+    private ArrayList<Book> bookList = new ArrayList<>();
+
     public Cart(){}
+
     public Cart(User user){
         this.user = user;
     }
@@ -42,9 +49,11 @@ public class Cart {
     public void setUser(User user){
         this.user = user;
     }
+
     public User getUser(){
         return user;
     }
+
     public ArrayList<Book> getList(){
         return bookList;
     }
