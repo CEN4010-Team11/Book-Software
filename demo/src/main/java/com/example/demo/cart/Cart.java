@@ -1,3 +1,10 @@
+
+package com.example.demo.book;
+
+import com.example.demo.author.Author;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 
 public class ShoppingCart {
