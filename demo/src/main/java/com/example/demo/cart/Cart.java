@@ -1,12 +1,15 @@
 
+
 package com.example.demo.cart;
 
 
+import com.example.demo.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import com.example.demo.book.Book;
 import javax.persistence.*;
 import java.util.ArrayList;
-
+@Entity
+@Table
 public class Cart {
     @OneToOne
     @JoinColumn(
@@ -14,11 +17,24 @@ public class Cart {
         referencedColumnName = "id"
         )
     private User user;
+    @Id
+    @SequenceGenerator(
+            name = "cart_sequence",
+            sequenceName = "cart_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "cart_sequence"
+    )
+    @Column(name = "id", updatable = false)
+
+    private Long ID;
     private int salesNumber;
     private String title;
-    ArrayList<String> bookList = new ArrayList<>();
+    ArrayList<Book> bookList = new ArrayList<>();
     public Cart(){}
-    public Cart(String user){
+    public Cart(User user){
         this.user = user;
     }
     
@@ -32,12 +48,12 @@ public class Cart {
     public User getUser(){
         return user;
     }
-    public ArrayList<String> getList(){
+    public ArrayList<Book> getList(){
         return bookList;
     }    
     
     public void removeBook(Book name){
-        bookList.remove(new String(name));
+        bookList.remove(name);
     }
     public void purchase(){
         //incrementSales();
