@@ -1,7 +1,5 @@
-package com.example.demo.book;
+package com.example.demo.cart;
 
-import com.example.demo.author.Author;
-import com.example.demo.author.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +21,7 @@ public class CartService {
     public List<Cart> getCart(){
         return rep.findAll();
     }
-    public Optional<Cart> getCartByID(@PathVariable Long Cartid) {
+    public Optional<Cart> getCartByID(Long Cartid) {
         return rep.findCartByID(Cartid);
     }
 }
