@@ -17,4 +17,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findBooksByAuthor_Id(Long author_id);
 
     List<Book> findBooksByGenreContainingIgnoreCase(String genre);
+
+    @Query("SELECT b FROM Book b WHERE b.rating >= ?1")
+    List<Book> findBooksByMinimumRating(double rating);
 }
