@@ -97,4 +97,9 @@ public class BookService {
         List<Book> book = bookRepository.findBooksByGenreContainingIgnoreCase(genre);
         return book;
     }
+
+    public List<Book> getBooksByRating(double rating) {
+        List<Book> book = bookRepository.findBooksByMinimumRating(rating);
+        return book;
+    }
 }
