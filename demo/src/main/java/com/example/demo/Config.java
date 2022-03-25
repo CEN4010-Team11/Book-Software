@@ -6,6 +6,7 @@ import com.example.demo.book.Book;
 import com.example.demo.book.BookRepository;
 import com.example.demo.user.User;
 import com.example.demo.user.UserRepository;
+import com.example.demo.cart.CartRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,7 @@ public class Config
 {
     @Bean
     CommandLineRunner bookStoreCommandLineRunner(BookRepository bookRepository, AuthorRepository authorRepository,
-                                            UserRepository userRepository)
+                                            UserRepository userRepository, CartRepository cartRepository)
     {
         return args->
         {
@@ -26,6 +27,9 @@ public class Config
             User user3 = new User("franklin@bellsouth.net", "54321", "Frank", "433 backward street");
             User user4 = new User("juan@yahoo.com", "juan7", "Juan", "111 backward street");
             User user5 = new User("grace111@gmail.com", "princess2", "Grace", "600 maple street");
+
+            user1.createCart();
+            user2.createCart();
 
             //create and implement author classes before putting them as parameters for the books
             Author jkRowling = new Author("J.K.", "Rowling", "Makes a lot of fiction.", "Bloomsbury");
@@ -50,7 +54,6 @@ public class Config
             Author fujinoOmori = new Author("Fujino", "Omori", "Variety of genres.", "Further Down");
             Author anekoYusagi = new Author("Aneko", "Yusagi", "Best books based on romance.", "Kite Productions");
             Author natsumeAkatsuki = new Author("Natsume", "Akatsuki", "10 great picks.", "Bloomsbury");
-
 
             //add books by declaring their ISBN, title, author, genre, description,
             //publisher, year of publication, and price in that order
@@ -245,8 +248,9 @@ public class Config
                     anekoYusagi, natsumeAkatsuki));
 
             userRepository.saveAll(List.of(user1, user2, user3, user4, user5));
+            cartRepository.saveAll(List.of(user1.getCart(), user2.getCart()));
+
 
         };
     };
 }
-
