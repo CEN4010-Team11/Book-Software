@@ -4,9 +4,18 @@ import java.util.ArrayList;
 
 import com.example.demo.book.Book;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.*;
 
+@Entity
+@Table
 public class Wishlist {
+
+    @Id
+    private Long id;
+
     private String name;
     private String user;
     ArrayList<Book> books;
