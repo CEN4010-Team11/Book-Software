@@ -24,10 +24,18 @@ public class BookController {
         return bookService.getBooks();
     }
 
+    //adds book and author at the same time
     @PostMapping
     public void addBook(@RequestBody Book book)
     {
         bookService.addNewBook(book);
+    }
+
+    //adds book to existing author
+    @PostMapping(path = "/author/{author_id}")
+    public void addBook(@RequestBody Book book, @PathVariable("author_id") Long authorId)
+    {
+        bookService.addNewBook(book, authorId);
     }
 
     @DeleteMapping(path = "{book_id}")
@@ -48,7 +56,6 @@ public class BookController {
     {
         bookService.updateBook(bookId, title, genre, description, publisher, year_published, price);
     }
-
 
     @GetMapping("/author/{author_id}")
     public List<Book> getBooksByAuthor(@PathVariable Long author_id){
