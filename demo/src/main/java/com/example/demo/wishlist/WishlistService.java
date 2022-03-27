@@ -5,21 +5,21 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class wishlistService {
-    private ArrayList<wishlist> wishlists;
+public class WishlistService {
+    private ArrayList<Wishlist> wishlists;
 
     @Autowired
-    public wishlistService(ArrayList<wishlist> wishlists) {
+    public WishlistService(ArrayList<Wishlist> wishlists) {
         this.wishlists = wishlists;
     }
 
-    public ArrayList<wishlist> getWishlists() {
+    public ArrayList<Wishlist> getWishlists() {
         return wishlists;
     }
 
-    public ArrayList<wishlist> getWishListByName(String name) {
-        ArrayList<wishlist> wishlist = new ArrayList<wishlist>();
-        for (wishlist w : wishlists) {
+    public ArrayList<Wishlist> getWishListByName(String name) {
+        ArrayList<Wishlist> wishlist = new ArrayList<Wishlist>();
+        for (Wishlist w : wishlists) {
             if (w.getName().equals(name)) {
                 wishlist.add(w);
             }
