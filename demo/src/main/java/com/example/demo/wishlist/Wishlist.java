@@ -6,25 +6,25 @@ import com.example.demo.book.Book;
 
 import java.util.*;
 
-public class wishlist {
+public class Wishlist {
     private String name;
     private String user;
     ArrayList<Book> books;
 
     // default constructor
-    public wishlist() {
+    public Wishlist() {
         books = new ArrayList<Book>();
     }
 
     // parameterized constructor
-    public wishlist(String name, String user, Book book) {
+    public Wishlist(String name, String user, Book book) {
         this.name = name;
         this.user = user;
         this.books = new ArrayList<Book>();
         this.books.add(book);
     }
 
-    public wishlist(String user, String name) {
+    public Wishlist(String user, String name) {
         this.name = name;
         this.user = user;
         this.books = new ArrayList<Book>();
@@ -43,29 +43,29 @@ public class wishlist {
         return user;
     }
 
-    // get book from wishlist
-    // this method will be used to get book from wishlist to the cart
-    public Book getBook(Book book) {
-        for (Book b : books) {
-            if (b.getId() == book.getId()) {
-                return b;
-            }
-        }
-    }
+    // get book from Wishlist
+    // this method will be used to get book from Wishlist to the cart
+//    public Book getBook(Book book) {
+//        for (Book b : books) {
+//            if (b.getId() == book.getId()) {
+//                return b;
+//            }
+//        }
+//    }
 
-    // add book into the wishlist
+    // add book into the Wishlist
     public void addBook(Book book) {
         books.add(book);
     }
 
-    // remove book from the wishlist
+    // remove book from the Wishlist
     public void removeBook(Book book) {
         books.remove(book);
     }
 
     @Override
     public String toString() {
-        return "wishlist{" +
+        return "Wishlist{" +
                 "name='" + name + '\'' +
                 ", user='" + user + '\'' +
                 ", books=" + books +
