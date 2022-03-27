@@ -2,6 +2,7 @@ package com.example.demo.book;
 
 import com.example.demo.author.Author;
 import com.example.demo.author.AuthorRepository;
+import com.example.demo.author.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,10 +18,12 @@ import java.util.Optional;
 public class BookService {
 
     private final BookRepository bookRepository;
+    private final AuthorService authorService;
 
     @Autowired
-    public BookService(BookRepository bookRepository) {
+    public BookService(BookRepository bookRepository, AuthorService authorService) {
         this.bookRepository = bookRepository;
+        this.authorService = authorService;
     }
 
     public List<Book> getBooks() {
@@ -33,6 +36,23 @@ public class BookService {
         {
             throw new IllegalStateException("The book with that ISBN is already in the database.");
         }
+        bookRepository.save(book);
+    }
+
+    public void addNewBook(Book book, Long author_id) {
+        Optional<Book> bookOptional = bookRepository.findBookByISBN(book.getISBN());
+        if (bookOptional.isPresent())
+        {
+            throw new IllegalStateException("The book with that ISBN is already in the database.");
+        }
+        Optional<Author> authorOptional = authorService.getAuthorById(author_id);
+        if(!authorOptional.isPresent())
+        {
+            throw new IllegalStateException("There is no author with that id in the database.");
+        }
+        Author author = authorOptional.get();
+        author.addBook(book);
+        book.setAuthor(author);
         bookRepository.save(book);
     }
 
