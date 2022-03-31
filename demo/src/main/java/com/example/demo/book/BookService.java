@@ -122,4 +122,9 @@ public class BookService {
         List<Book> book = bookRepository.findBooksByMinimumRating(rating);
         return book;
     }
+
+    public Page<Book> getBooksLimit(int limit, int page) {
+        PageRequest pageRequest = PageRequest.of(page, limit);
+        return bookRepository.findAll(pageRequest);
+    }
 }
