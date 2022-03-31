@@ -83,4 +83,10 @@ public class BookController {
         return bookService.getBooksByRating(rating);
     }
 
+    @GetMapping("/limit/{limit}/{page}")
+    public Page<Book> getBooksLimit(@PathVariable int limit, @PathVariable int page)
+    {
+        return bookService.getBooksLimit(limit, page);
+    }
+
 }
