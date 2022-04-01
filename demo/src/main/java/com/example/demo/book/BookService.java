@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+
+
 @Service
 public class BookService {
 
@@ -119,11 +121,19 @@ public class BookService {
     }
 
     public List<Book> getBooksByRating(double rating) {
+        if(rating < 0.5 || rating > 5.0)
+        {
+            throw new IllegalStateException("Rating must be between 0.5 and 5 stars.");
+        }
         List<Book> book = bookRepository.findBooksByMinimumRating(rating);
         return book;
     }
 
     public Page<Book> getBooksLimit(int limit, int page) {
+        if (limit < 1)
+        {
+            throw new IllegalStateException("Limit value must be greater than or equal to 1.");
+        }
         PageRequest pageRequest = PageRequest.of(page, limit);
         return bookRepository.findAll(pageRequest);
     }
