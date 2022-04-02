@@ -20,7 +20,8 @@ public class CartService {
     private final Cart cart;
     private final BookRepository bookrep;
     private ArrayList<Book> list = new ArrayList<>();
-    private Book name;
+    private Book book;
+    private boolean check = false;
     
     @Autowired
     public CartService(CartRepository rep, BookRepository bookrep){
@@ -42,12 +43,33 @@ public class CartService {
         }
         list = cart.getList;
         for(int i = 0; i <= list.length; i++){
-            name = list[i];
-            Optional<Book> bookOptional2 = bookrep.findBookByISBN(name.getISBN());
+            book = list[i];
+            Optional<Book> bookOptional2 = bookrep.findBookByISBN(book.getISBN());
             if(bookOptional.equals(bookOptional2) == true){
                 throw new IllegalStateException("The book with that ISBN is already on the cart.");
             }              
         }       
         cart.addBook(title);
+    }
+    public void removeBook(Book name){
+        Optional<Book> bookOptional = bookrep.findBookByISBN(name.getISBN());
+        if (!bookOptional.isPresent())
+        {
+            throw new IllegalStateException("The book with that ISBN is not in the database.");
+        }
+        list = cart.getList;
+        for(int i = 0; i <= list.length; i++){
+            book = list[i];
+            Optional<Book> bookOptional2 = bookrep.findBookByISBN(book.getISBN());
+            if(bookOptional.equals(bookOptional2) == true){
+               cart.removeBook(name);
+                check = true;
+            }
+                
+        }
+        if(check == false){
+            throw new IllegalStateException("The book with that ISBN is not on the cart.");
+        }
+        
     }
 }
