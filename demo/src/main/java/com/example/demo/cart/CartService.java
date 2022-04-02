@@ -57,7 +57,7 @@ public class CartService {
         {
             throw new IllegalStateException("The book with that ISBN is not in the database.");
         }
-        list = cart.getList;
+        list = cart.getList();
         for(int i = 0; i <= list.length; i++){
             book = list[i];
             Optional<Book> bookOptional2 = bookrep.findBookByISBN(book.getISBN());
@@ -69,7 +69,13 @@ public class CartService {
         }
         if(check == false){
             throw new IllegalStateException("The book with that ISBN is not on the cart.");
+        }       
+    }
+    public void printList(){
+        list = cart.getList();
+        if(list.isEmpty == true){
+            throw new IllegalStateException("There isn't any books on the cart.");
         }
-        
+        cart.printList();
     }
 }
