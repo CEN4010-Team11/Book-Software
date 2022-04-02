@@ -24,5 +24,10 @@ public class CartController {
         return service.getCartByID(Cartid);
 
     }
+    @PostMapping
+        public void addBook(@RequestBody Book title){
+        service.addBook(title);
+
+    }
 
 }
