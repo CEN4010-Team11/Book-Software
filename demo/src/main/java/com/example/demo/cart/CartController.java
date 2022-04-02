@@ -25,9 +25,12 @@ public class CartController {
 
     }
     @PostMapping
-        public void addBook(@RequestBody Book title){
+    public void addBook(@RequestBody Book title){
         service.addBook(title);
-
+    }
+    @PostMapping
+    public void removeBook(Book name){
+        service.removeBook(name);
     }
 
 }
