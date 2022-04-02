@@ -29,8 +29,12 @@ public class CartController {
         service.addBook(title);
     }
     @PostMapping
-    public void removeBook(Book name){
+    public void removeBook(@RequestBody Book name){
         service.removeBook(name);
+    }
+    @PostMapping
+    public void printList(){
+        service.printList();   
     }
 
 }
