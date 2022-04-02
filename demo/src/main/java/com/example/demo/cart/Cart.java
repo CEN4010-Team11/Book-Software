@@ -31,8 +31,8 @@ public class Cart {
     @Column(name = "id", updatable = false)
 
     private Long ID;
-    private int salesNumber;
-    private String title;
+    //private int salesNumber;
+   // private String title;
 
     private ArrayList<Book> bookList = new ArrayList<>();
 
@@ -74,8 +74,8 @@ public class Cart {
         return "Cart{" +
                 "user=" + user +
                 ", ID=" + ID +
-                ", salesNumber=" + salesNumber +
-                ", title='" + title + '\'' +
+           //     ", salesNumber=" + salesNumber +
+           //     ", title='" + title + '\'' +
                 ", bookList=" + bookList +
                 '}';
     }
