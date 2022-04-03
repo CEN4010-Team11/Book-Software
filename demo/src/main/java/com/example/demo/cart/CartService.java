@@ -34,7 +34,7 @@ public class CartService {
     public Optional<Cart> getCartByID(Long Cartid) {
         return rep.findCartByID(Cartid);
     }
-    public void addBook(Book title){
+    public void addBook(Book title, Long Cardid){
         
         Optional<Book> bookOptional = bookrep.findBookByISBN(title.getISBN());
         if (!bookOptional.isPresent())
@@ -51,7 +51,7 @@ public class CartService {
         }       
         cart.addBook(title);
     }
-    public void removeBook(Book name){
+    public void removeBook(Book name, Long Cardid){
         Optional<Book> bookOptional = bookrep.findBookByISBN(name.getISBN());
         if (!bookOptional.isPresent())
         {
@@ -71,11 +71,5 @@ public class CartService {
             throw new IllegalStateException("The book with that ISBN is not on the cart.");
         }       
     }
-    public void printList(){
-        list = cart.getList();
-        if(list.isEmpty == true){
-            throw new IllegalStateException("There isn't any books on the cart.");
-        }
-        cart.printList();
-    }
+
 }
