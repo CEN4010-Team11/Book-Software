@@ -31,8 +31,6 @@ public class Cart {
     @Column(name = "id", updatable = false)
 
     private Long ID;
-    //private int salesNumber;
-   // private String title;
 
     private ArrayList<Book> bookList = new ArrayList<>();
 
@@ -65,17 +63,12 @@ public class Cart {
         //incrementSales();
         bookList.clear();
     }
-    public void printList(){
-        System.out.println("Book List:" + bookList);
-    }
 
     @Override
     public String toString() {
         return "Cart{" +
                 "user=" + user +
                 ", ID=" + ID +
-           //     ", salesNumber=" + salesNumber +
-           //     ", title='" + title + '\'' +
                 ", bookList=" + bookList +
                 '}';
     }
