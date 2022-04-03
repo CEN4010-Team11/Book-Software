@@ -24,17 +24,13 @@ public class CartController {
         return service.getCartByID(Cartid);
 
     }
-    @PostMapping
-    public void addBook(@RequestBody Book title){
+    @PostMapping("{CartID}")
+    public void addBook(@RequestBody Book title, @PathVariable Long Cardid){
         service.addBook(title);
     }
-    @PostMapping
-    public void removeBook(@RequestBody Book name){
+    @DeleteMapping("{CartID}")
+    public void removeBook(@RequestBody Book name, @PathVariable Long Cardid){
         service.removeBook(name);
-    }
-    @PostMapping
-    public void printList(){
-        service.printList();   
     }
 
 }
