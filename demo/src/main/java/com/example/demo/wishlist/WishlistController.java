@@ -1,5 +1,6 @@
 package com.example.demo.wishlist;
 
+import com.example.demo.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -22,25 +23,30 @@ public class WishlistController {
     }
 
     @PostMapping
-    public void addWishlist(@RequestBody Wishlist wishlist) {
-//        wishlistService.addNewWishlist(wishlist);
+    public void addWishlist(@RequestBody Wishlist Wishlist) {
+        wishlistService.addNewWishlist(Wishlist);
     }
 
     @DeleteMapping(path = "{wishlist_id}")
-    public void deleteWishlist(@PathVariable("wishlist_id") Long wishlistId) {
-//        wishlistService.deleteWishlist(wishlistId);
+    public void deleteWishlist(@PathVariable("wishlist_id") String wishlistId) {
+        wishlistService.deleteWishlist(wishlistId);
     }
 
-    @PutMapping(path = "{wishlist_id}")
-    public void updateWishlist(
-            @PathVariable("wishlist_id") Long wishlistId,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String description) {
-//        wishlistService.updateWishlist(wishlistId, name, description);
+    // get Wishlist by user
+    @GetMapping(path = "user/{user_id}")
+    public List<Wishlist> getWishlistByUser(@PathVariable("user_id") User user) {
+        return wishlistService.getWishlistByUser(user);
     }
 
-//    @GetMapping("/user/{user_id}")
-//    public List<Wishlist> getWishlistByUser(@PathVariable Long user_id) {
-//        return wishlistService.getWishlistByUser(user_id);
+//    // add Wishlist to cart
+//    @PostMapping("/{wishlist_id}/cart/{cart_id}")
+//    public void addWishlistToCart(@PathVariable Long Wishlist_id, @PathVariable Long cart_id) {
+//        wishlistService.addWishlistToCart(Wishlist_id, cart_id);
+//    }
+//
+//    // remove Wishlist from cart
+//    @DeleteMapping("/{wishlist_id}/cart/{cart_id}")
+//    public void removeWishlistFromCart(@PathVariable Long Wishlist_id, @PathVariable Long cart_id) {
+//        wishlistService.removeWishlistFromCart(Wishlist_id, cart_id);
 //    }
 }
