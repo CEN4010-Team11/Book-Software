@@ -1,23 +1,14 @@
 package com.example.demo.wishlist;
 
 import java.util.ArrayList;
-
 import com.example.demo.book.Book;
+import com.example.demo.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.*;
 
-@Entity
-@Table
 public class Wishlist {
-
-    @Id
-    private Long id;
-
     private String name;
-    private String user;
+    User user;
     ArrayList<Book> books;
 
     // default constructor
@@ -26,14 +17,14 @@ public class Wishlist {
     }
 
     // parameterized constructor
-    public Wishlist(String name, String user, Book book) {
+    public Wishlist(String name, User user, Book book) {
         this.name = name;
         this.user = user;
         this.books = new ArrayList<Book>();
         this.books.add(book);
     }
 
-    public Wishlist(String user, String name) {
+    public Wishlist(User user, String name) {
         this.name = name;
         this.user = user;
         this.books = new ArrayList<Book>();
@@ -48,7 +39,7 @@ public class Wishlist {
         this.name = name;
     }
 
-    public String getUser() {
+    public User getUser() {
         return user;
     }
 
