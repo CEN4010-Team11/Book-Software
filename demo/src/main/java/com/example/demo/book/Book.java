@@ -2,6 +2,7 @@ package com.example.demo.book;
 
 import com.example.demo.author.Author;
 import com.example.demo.wishlist.Wishlist;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
@@ -41,6 +42,7 @@ public class Book
             foreignKey = @ForeignKey (name = "author_book_fk"))
     private Author author;
 
+    @JsonIgnore
     @ManyToMany(
             mappedBy = "books"
     )
@@ -227,7 +229,7 @@ public class Book
     public void setWishlists(List<Wishlist> wishlists) {
         this.wishlists = wishlists;
     }
-    
+
     @Override
     public String toString() {
         return "Book{" +
