@@ -1,9 +1,12 @@
 package com.example.demo.book;
 
 import com.example.demo.author.Author;
+import com.example.demo.wishlist.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "Book")
 @Table(
@@ -33,10 +36,15 @@ public class Book
     @Column(name = "title", nullable = false)
     private String title;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name="author_id", nullable = true, referencedColumnName = "id",
             foreignKey = @ForeignKey (name = "author_book_fk"))
     private Author author;
+
+    @ManyToMany(
+            mappedBy = "books"
+    )
+    private List<Wishlist> wishlists = new ArrayList<>();
 
     @Column(name = "genre", nullable = false)
     private String genre;
@@ -212,6 +220,14 @@ public class Book
         this.rating = rating;
     }
 
+    public List<Wishlist> getWishlists() {
+        return wishlists;
+    }
+
+    public void setWishlists(List<Wishlist> wishlists) {
+        this.wishlists = wishlists;
+    }
+    
     @Override
     public String toString() {
         return "Book{" +
@@ -228,4 +244,5 @@ public class Book
                 ", rating=" + rating +
                 '}';
     }
+
 }
