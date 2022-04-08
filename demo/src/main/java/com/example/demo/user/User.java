@@ -37,9 +37,9 @@ public class User {
     user relationships with cart and wishlists, will uncomment later
      */
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = {CascadeType.ALL})
-//    private List<Wishlist> wishlists = new ArrayList<>();
+    @JsonIgnore 
+    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = {CascadeType.ALL})
+    private List<Wishlist> wishlists = new ArrayList<>();
 
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(
