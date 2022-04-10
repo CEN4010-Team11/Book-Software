@@ -7,6 +7,8 @@ import com.example.demo.user.User;
 import javax.persistence.*;
 import java.util.*;
 
+@Entity
+@Table
 public class Wishlist {
     @Id
     @SequenceGenerator(
