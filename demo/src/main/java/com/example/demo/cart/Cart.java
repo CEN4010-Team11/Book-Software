@@ -7,15 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.book.Book;
 import javax.persistence.*;
 import java.util.ArrayList;
+
 @Entity
 @Table
 public class Cart {
-    @OneToOne
-    @JoinColumn(
-            name = "user_id",
-            referencedColumnName = "id"
-    )
-    @JsonIgnoreProperties({"cart", "password", "address"})
+//    @OneToOne
+//    @JoinColumn(
+//            name = "user_id",
+//            referencedColumnName = "id"
+//    )
+//    @JsonIgnoreProperties({"cart", "password", "address"})
     private User user;
 
     @Id
@@ -29,7 +30,6 @@ public class Cart {
             generator = "cart_sequence"
     )
     @Column(name = "id", updatable = false)
-
     private Long ID;
 
     private ArrayList<Book> bookList = new ArrayList<>();
