@@ -264,14 +264,14 @@ public class Config
             Cart cart1 = user1.getCart();
             Cart cart2 = user2.getCart();
             Cart cart3 = user3.getCart();
-//
-//            //Adds books to example shopping carts
-//            cart1.addBook(book1);
-//            cart1.addBook(book13);
-//            cart2.addBook(book40);
-//            cart2.addBook(book21);
-//            cart3.addBook(book22);
-//            cart3.addBook(book24);
+
+            //Adds books to example shopping carts
+            cart1.addBook("Harry Potter and the Sorcerer's Stone");
+            cart1.addBook("Toradora! (Light Novel) Vol. 1");
+            cart2.addBook("Harry Potter and the Prisoner of Azkaban");
+            cart2.addBook("Seirei Gensouki: Spirit Chronicles: Omnibus 1");
+            cart3.addBook(book2.getTitle());
+            cart3.addBook(book12.getTitle());
 //
 //            //Creates and assigns variables for example user wishlists
 //            Wishlist wishlist1 = new Wishlist("My Wishlist", user1, book1);
