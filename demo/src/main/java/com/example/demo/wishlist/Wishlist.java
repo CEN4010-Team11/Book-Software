@@ -50,7 +50,7 @@ public class Wishlist {
                     foreignKey = @ForeignKey(name = "wishes_for_book_id_fk")
             )
     )
-    ArrayList<Book> booksWished;
+    List<Book> booksWished;
 
     // default constructor
     public Wishlist() {
