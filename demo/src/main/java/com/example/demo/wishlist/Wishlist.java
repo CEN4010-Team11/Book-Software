@@ -4,12 +4,23 @@ import java.util.ArrayList;
 import com.example.demo.book.Book;
 import com.example.demo.user.User;
 
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.*;
 
 public class Wishlist {
+    @Id
+    @SequenceGenerator(
+            name = "wishlist_sequence",
+            sequenceName = "wishlist_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "wishlist_sequence"
+    )
+    @Column(name = "id", updatable = false)
+    private Long id;
+
     private String name;
 
     @ManyToOne
@@ -22,25 +33,40 @@ public class Wishlist {
             )
     )
     User user;
-    ArrayList<Book> books;
+
+    @ManyToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.DETACH}
+    )
+    @JoinTable(
+            name = "wishes_for",
+            joinColumns = @JoinColumn(
+                    name = "wishlist_id",
+                    foreignKey = @ForeignKey(name = "wishes_for_wishlist_id_fk")
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "book_id",
+                    foreignKey = @ForeignKey(name = "wishes_for_book_id_fk")
+            )
+    )
+    ArrayList<Book> booksWished;
 
     // default constructor
     public Wishlist() {
-        books = new ArrayList<Book>();
+        booksWished = new ArrayList<Book>();
     }
 
     // parameterized constructor
     public Wishlist(String name, User user, Book book) {
         this.name = name;
         this.user = user;
-        this.books = new ArrayList<Book>();
-        this.books.add(book);
+        this.booksWished = new ArrayList<Book>();
+        this.booksWished.add(book);
     }
 
     public Wishlist(User user, String name) {
         this.name = name;
         this.user = user;
-        this.books = new ArrayList<Book>();
+        this.booksWished = new ArrayList<Book>();
     }
 
     // getters and setters
@@ -68,12 +94,12 @@ public class Wishlist {
 
     // add book into the Wishlist
     public void addBook(Book book) {
-        books.add(book);
+        booksWished.add(book);
     }
 
     // remove book from the Wishlist
     public void removeBook(Book book) {
-        books.remove(book);
+        booksWished.remove(book);
     }
 
     @Override
@@ -81,7 +107,7 @@ public class Wishlist {
         return "Wishlist{" +
                 "name='" + name + '\'' +
                 ", user='" + user + '\'' +
-                ", books=" + books +
+                ", books=" + booksWished +
                 '}';
     }
 
