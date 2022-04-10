@@ -9,7 +9,7 @@ import com.example.demo.user.User;
 import com.example.demo.user.UserRepository;
 import com.example.demo.cart.CartRepository;
 import com.example.demo.wishlist.Wishlist;
-import com.example.demo.wishlist.WishlistRepository;
+//import com.example.demo.wishlist.WishlistRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +21,9 @@ public class Config
 {
     @Bean
     CommandLineRunner bookStoreCommandLineRunner(BookRepository bookRepository, AuthorRepository authorRepository,
-                                                 UserRepository userRepository, CartRepository cartRepository,
-                                                 WishlistRepository wishlistRepository)
+                                                 UserRepository userRepository, CartRepository cartRepository
+                                                 //,WishlistRepository wishlistRepository
+    )
     {
         return args->
         {
@@ -263,24 +264,29 @@ public class Config
             Cart cart1 = user1.getCart();
             Cart cart2 = user2.getCart();
             Cart cart3 = user3.getCart();
+//
+//            //Adds books to example shopping carts
+//            cart1.addBook(book1);
+//            cart1.addBook(book13);
+//            cart2.addBook(book40);
+//            cart2.addBook(book21);
+//            cart3.addBook(book22);
+//            cart3.addBook(book24);
+//
+//            //Creates and assigns variables for example user wishlists
+//            Wishlist wishlist1 = new Wishlist("My Wishlist", user1, book1);
+//            Wishlist wishlist2 = new Wishlist("Books I Want", user2, book29);
+//            Wishlist wishlist3 = new Wishlist("Cool books", user3, book10);
+//
+//            //Adds books to example wishlists
+//            wishlist1.addBook(book14);
+//            wishlist2.addBook(book11);
+//            wishlist3.addBook(book33);
 
-            //Adds books to example shopping carts
-            cart1.addBook(book1);
-            cart1.addBook(book13);
-            cart2.addBook(book40);
-            cart2.addBook(book21);
-            cart3.addBook(book22);
-            cart3.addBook(book24);
-
-            //Creates and assigns variables for example user wishlists
-            Wishlist wishlist1 = new Wishlist("My Wishlist", user1, book1);
-            Wishlist wishlist2 = new Wishlist("Books I Want", user2, book29);
-            Wishlist wishlist3 = new Wishlist("Cool books", user3, book10);
-
-            //Adds books to example wishlists
-            wishlist1.addBook(book14);
-            wishlist2.addBook(book11);
-            wishlist3.addBook(book33);
+            authorRepository.saveAll(List.of(jkRowling, jrrTolkien, stephenKing, lemonySnicket, rekiKawaraha, mattHaig,
+                    kyungSookShin, minJinLee, ginjerClarke, rifujinNaMagonote, yuriKitayama, okinaBaba, wataruWatari,
+                    rickRiordan, ryoShirakome, alexPine, gilesTremlett, yuyukoTakemiya, aoJyumonji, fujinoOmori,
+                    anekoYusagi, natsumeAkatsuki));
 
             bookRepository.saveAll(
                             List.of(book1, book2, book3, book4, book5, book6, book7, book8 ,book9, book10
@@ -289,13 +295,8 @@ public class Config
                                     , book29, book30, book31, book32, book33, book34, book35, book36, book37
                                     , book38, book39, book40, book41, book42));
 
-            authorRepository.saveAll(List.of(jkRowling, jrrTolkien, stephenKing, lemonySnicket, rekiKawaraha, mattHaig,
-                    kyungSookShin, minJinLee, ginjerClarke, rifujinNaMagonote, yuriKitayama, okinaBaba, wataruWatari,
-                    rickRiordan, ryoShirakome, alexPine, gilesTremlett, yuyukoTakemiya, aoJyumonji, fujinoOmori,
-                    anekoYusagi, natsumeAkatsuki));
-
             userRepository.saveAll(List.of(user1, user2, user3, user4, user5));
-            
+
             /*This code is currently commented out because the Wishlist class and Cart class have not been modeled
             in Spring Boot, so they are not serialized and this code does not work. When the classes have been
             serialized, this code can be uncommented.*/
