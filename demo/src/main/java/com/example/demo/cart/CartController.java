@@ -1,5 +1,6 @@
 package com.example.demo.cart;
 
+import com.example.demo.book.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +26,12 @@ public class CartController {
 
     }
     @PostMapping("{CartID}")
-    public void addBook(@RequestBody Book title, @PathVariable Long Cardid){
-        service.addBook(title);
+    public void addBook(@PathVariable Long Cardid){
+        service.addBook(Cardid);
     }
     @DeleteMapping("{CartID}")
-    public void removeBook(@RequestBody Book name, @PathVariable Long Cardid){
-        service.removeBook(name);
+    public void removeBook(@PathVariable Long Cardid){
+        service.removeBook(Cardid);
     }
 
 }
