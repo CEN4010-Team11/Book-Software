@@ -44,7 +44,7 @@ public class Book
 
     @JsonIgnore
     @ManyToMany(
-            mappedBy = "books"
+            mappedBy = "booksWished"
     )
     private List<Wishlist> wishlists = new ArrayList<>();
 
