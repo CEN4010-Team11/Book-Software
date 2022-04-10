@@ -4,10 +4,23 @@ import java.util.ArrayList;
 import com.example.demo.book.Book;
 import com.example.demo.user.User;
 
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.*;
 
 public class Wishlist {
     private String name;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "user_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "user_wishlist_fk"
+            )
+    )
     User user;
     ArrayList<Book> books;
 
