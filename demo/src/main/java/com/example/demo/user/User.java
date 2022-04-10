@@ -1,5 +1,6 @@
 package com.example.demo.user;
 import com.example.demo.cart.Cart;
+import com.example.demo.wishlist.Wishlist;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.ArrayList;
