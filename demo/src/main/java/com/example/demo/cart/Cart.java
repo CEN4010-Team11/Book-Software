@@ -11,12 +11,13 @@ import java.util.ArrayList;
 @Entity
 @Table
 public class Cart {
-//    @OneToOne
-//    @JoinColumn(
-//            name = "user_id",
-//            referencedColumnName = "id"
-//    )
-//    @JsonIgnoreProperties({"cart", "password", "address"})
+
+    @OneToOne
+    @JoinColumn(
+            name = "user_id",
+            referencedColumnName = "id"
+    )
+    @JsonIgnoreProperties({"cart", "password", "address"})
     private User user;
 
     @Id
