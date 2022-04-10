@@ -37,16 +37,16 @@ public class Book
     @Column(name = "title", nullable = false)
     private String title;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne
     @JoinColumn(name="author_id", nullable = true, referencedColumnName = "id",
             foreignKey = @ForeignKey (name = "author_book_fk"))
     private Author author;
 
-    @JsonIgnore
-    @ManyToMany(
-            mappedBy = "booksWished"
-    )
-    private List<Wishlist> wishlists = new ArrayList<>();
+//    @JsonIgnore
+//    @ManyToMany(
+//            mappedBy = "booksWished"
+//    )
+//    private List<Wishlist> wishlists = new ArrayList<>();
 
     @Column(name = "genre", nullable = false)
     private String genre;
@@ -222,13 +222,13 @@ public class Book
         this.rating = rating;
     }
 
-    public List<Wishlist> getWishlists() {
-        return wishlists;
-    }
-
-    public void setWishlists(List<Wishlist> wishlists) {
-        this.wishlists = wishlists;
-    }
+//    public List<Wishlist> getWishlists() {
+//        return wishlists;
+//    }
+//
+//    public void setWishlists(List<Wishlist> wishlists) {
+//        this.wishlists = wishlists;
+//    }
 
     @Override
     public String toString() {
