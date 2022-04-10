@@ -39,14 +39,14 @@ public class User {
      */
 
 //    @JsonIgnore
-//    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = {CascadeType.ALL})
+//    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = {CascadeType.REMOVE})
 //    private List<Wishlist> wishlists = new ArrayList<>();
-//
-//    @OneToOne(cascade = {CascadeType.ALL})
-//    @JoinColumn(
-//            name = "cart_id",
-//            referencedColumnName = "id"
-//    )
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(
+            name = "cart_id",
+            referencedColumnName = "id"
+    )
     private Cart cart;
 
 
