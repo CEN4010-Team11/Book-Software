@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api/v1/Cart")
+@RequestMapping(path = "api/v1/cart")
 
 public class CartController {
     private final CartService service;
@@ -16,22 +16,36 @@ public class CartController {
     public CartController(CartService service){
         this.service = service;
     }
+
     @GetMapping
     public List<Cart> getCart(){
         return service.getCart();
     }
-    @GetMapping("{CartID}")
+
+    @GetMapping("{Cartid}")
     public Optional<Cart> getCartByID(@PathVariable Long Cartid){
         return service.getCartByID(Cartid);
+    }
 
+    @GetMapping("{Cartid}/list")
+    public List<String> getCartListByID(@PathVariable Long Cartid){
+        return service.getCartListByID(Cartid);
     }
-    @PostMapping("{CartID}")
-    public void addBook(@PathVariable Long Cardid){
-        service.addBook(Cardid);
+
+    @PostMapping("{Cartid}/{bookName}")
+    public void addBook(@PathVariable Long Cartid, @PathVariable String bookName){
+        service.addBook(Cartid, bookName);
     }
-    @DeleteMapping("{CartID}")
-    public void removeBook(@PathVariable Long Cardid){
-        service.removeBook(Cardid);
+
+    @DeleteMapping("{Cartid}/{bookName}")
+    public void removeBook(@PathVariable Long Cartid, @PathVariable String bookName){
+        service.removeBook(Cartid, bookName);
     }
+
+    @PostMapping("{userID}")
+    public void addCart(@PathVariable Long userID){
+        service.addCart(userID);
+    }
+
 
 }
