@@ -36,7 +36,10 @@ public class Author {
     private String publisher;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "author", orphanRemoval = true, cascade = {CascadeType.DETACH})
+    @OneToMany(mappedBy = "author",
+            orphanRemoval = true,
+            cascade = {CascadeType.ALL}
+    )
     private List<Book> booksWritten = new ArrayList<>();
 
     public Author() {
