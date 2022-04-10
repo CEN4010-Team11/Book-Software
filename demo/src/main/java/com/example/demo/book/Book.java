@@ -1,13 +1,9 @@
 package com.example.demo.book;
 
 import com.example.demo.author.Author;
-import com.example.demo.wishlist.Wishlist;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity(name = "Book")
 @Table(
@@ -38,15 +34,13 @@ public class Book
     private String title;
 
     @ManyToOne
-    @JoinColumn(name="author_id", nullable = true, referencedColumnName = "id",
-            foreignKey = @ForeignKey (name = "author_book_fk"))
+    @JoinColumn(name="author_id",
+            nullable = true,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey (
+                    name = "author_book_fk")
+    )
     private Author author;
-
-//    @JsonIgnore
-//    @ManyToMany(
-//            mappedBy = "booksWished"
-//    )
-//    private List<Wishlist> wishlists = new ArrayList<>();
 
     @Column(name = "genre", nullable = false)
     private String genre;
