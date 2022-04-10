@@ -4,9 +4,12 @@ import com.example.demo.author.Author;
 import com.example.demo.author.AuthorRepository;
 import com.example.demo.book.Book;
 import com.example.demo.book.BookRepository;
+import com.example.demo.cart.Cart;
 import com.example.demo.user.User;
 import com.example.demo.user.UserRepository;
 import com.example.demo.cart.CartRepository;
+import com.example.demo.wishlist.Wishlist;
+import com.example.demo.wishlist.WishlistRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +21,8 @@ public class Config
 {
     @Bean
     CommandLineRunner bookStoreCommandLineRunner(BookRepository bookRepository, AuthorRepository authorRepository,
-                                            UserRepository userRepository, CartRepository cartRepository)
+                                                 UserRepository userRepository, CartRepository cartRepository,
+                                                 WishlistRepository wishlistRepository)
     {
         return args->
         {
@@ -27,9 +31,6 @@ public class Config
             User user3 = new User("franklin@bellsouth.net", "54321", "Frank", "433 backward street");
             User user4 = new User("juan@yahoo.com", "juan7", "Juan", "111 backward street");
             User user5 = new User("grace111@gmail.com", "princess2", "Grace", "600 maple street");
-
-            user1.createCart();
-            user2.createCart();
 
             //create and implement author classes before putting them as parameters for the books
             Author jkRowling = new Author("J.K.", "Rowling", "Makes a lot of fiction.", "Bloomsbury");
@@ -154,86 +155,132 @@ public class Config
                             "but players quickly turns to horror as they discover that SAO is " +
                             "a prison virtual world were game over means death.",
                     "Yen Press", 2014, 13.00, 12, 3.03);
+
             Book book24 = new Book("9781443455879", "The Midnight Library: A Novel", mattHaig, "Literature & Fiction.",
                     "Somewhere in the universe there is a library that has an infinite number of books, " +
                             "each one the story of another reality. One tells the story of your life as it is, " +
                             "other books had another version with a different choice at any point in your life.",
                     "Penguin Group", 2020, 20.40, 12, 3.00);
+
             Book book25 = new Book("9780307739513", "Please Look After Mom (Vintage Contemporaries)", kyungSookShin, "Literature & Fiction",
                     "When So-nyo is separated from her husband in the Seoul subway station, her family begins a desperate search for her. " +
                             "Yet secrets and sorrows begin to reveal themselves, they are forced to wonder: " +
                             "how well did they know the woman they called Mom?",
                     "Vintage", 2012, 13.99, 9, 3.20);
+
             Book book26 = new Book("9780099514282", "Free Food for Millionaires", minJinLee, "Literature & Fiction",
                     "Casey daughter of Korean immigrants is eager to make it on her own, away from her parents' tight-knit community, " +
                             "but she soon finds that her economics degree isn't enough to rid her of ever-growing credit card debt and a toxic boyfriend. ",
                     "Warner Books", 2018, 17.99, 9, 3.41);
+
             Book book27 = new Book("9781646111497", "The Fascinating Animal Book for Kids: 500 Wild Facts! (Fascinating Facts)", ginjerClarke, "Science, Nature & How It Works",
                     "This animal encyclopedia includes 500 amazing animal facts that offer hours of engaging learning. Alongside full-color pictures on every page",
                     "Callisto Media", 2020, 15.99, 20, 2.80);
+
             Book book28 = new Book("9781626922358", " Mushoku Tensei: Jobless Reincarnation (Light Novel) Vol. 1", rifujinNaMagonote, " Literature & Fiction",
                     "Kicked out by his family and wandering the streets, he hit rock-bottom--just as he’s killed by a speeding truck! " +
                             "Awakening to find himself reborn in another world with the memories intact, " +
                             "Rudeus Greyrat is determined not to repeat his past mistakes.",
                     "Seven Seas Entertainment", 2019, 18.99, 13, 3.63);
+
             Book book29 = new Book("9781718328808", "Seirei Gensouki: Spirit Chronicles: Omnibus 1", yuriKitayama, "Fiction & Fantasy",
                     "Rio has known nothing but solitude, hunger, and an overwhelming thirst for revenge. But from the humble beginnings of a poor orphan " +
                             "comes a rebirth. Through his trials and tribulations, Rio’s prowess opens the door to an adventure spanning continents.",
                     "J-Novel Club", 2021, 22.99, 10, 3.25);
+
             Book book30 = new Book("9780316412896", "So I'm a Spider, So What?, Vol. 1 (light novel)", okinaBaba, "Science Fiction & Fantasy",
                     "I used to be a normal high school girl but in the blink of an eye, I woke up in a place I've never seen before and I was a spider?! " +
                             "How could I possibly survive in literally the worst dungeon ever? Who the hell is responsible for this? SHOW YOUR FACE!",
                     "Yen Press", 2017, 14.00, 11, 3.52);
+
             Book book31 = new Book("9780316312295", "My Youth Romantic Comedy Is Wrong as I Expected, Vol. 1 - light novel", wataruWatari, "Graphic Novels & Romance",
                     "Hachiman Hikigaya is a cynic. Youth is a crock, he believes--a sucker's game. But when he turns in an essay " +
                             "for a school assignment espousing this view, he's make to work in the Service Club, " +
                             "an organization helping students with problems in their lives!",
                     "Yen On", 2016, 14.00, 16, 3.52);
+
             Book book32 = new Book("9780786838653", "The Lightning Thief (Percy Jackson and the Olympians, Book 1)", rickRiordan, "Fairy Tales, Folk Tales & Myths",
                     "Percy Jackson's pre-algebra teacher turned into a monster and tried to kill him. " +
                             "When Percy's mom finds out, she sends Percy to Camp Half Blood, a summer camp for " +
                             "demigods, where he learns that the father he never knew is Poseidon, god of the sea.",
                     "Disney-Hyperion Books", 2006, 7.99, 13, 3.52);
+
             Book book33 = new Book("9780141334011", "The Lost Hero (Heroes of Olympus, Book 1)", rickRiordan, "Fairy Tales, Folk Tales & Myths",
                     "Jason has a problem. He doesn’t remember anything before waking up on a school bus holding hands with a girl. " +
                             "Apparently she’s his girlfriend Piper, his best friend is a kid named Leo, and they’re all students in the Wilderness School.",
                     "Disney-Hyperion Books", 2012, 9.99, 4, 3.99);
+
             Book book34 = new Book("9781626927681", "Arifureta: From Commonplace to World's Strongest (Light Novel) Vol. 1", ryoShirakome, "Fantasy",
                     "Hajime life suddenly turned upside down when he, along with the rest of his class, is summoned to a fantasy world! " +
                             "Hajime's job, Synergist, only has a single transmutation skill. Will he be able to survive in this dangerous world of monsters and demons?",
                     "Seven Seas Entertainment", 2018, 23.75, 12, 4.01);
+
             Book book35 = new Book("9780008402648", "The Christmas Killer: (DI James Walker series) (Book 1)", alexPine, "Action & Adventure",
                     "DI James Walker family Christmas is disturb when he opens a box on his doorstep. Inside is a promise – twelve days, twelve murders. " +
                             "Not long after, the first body is found. Panic spreads through the remote Cumbrian village, there’s a killer amongst them.",
                     "HarperCollins UK", 2021, 12.99, 11, 3.03);
+
             Book book36 = new Book("9780802716743", "Ghosts of Spain: Travels Through Spain and Its Silent Past", gilesTremlett, "Non-fiction & Travel Literature",
                     "Sixty years after the Spanish Civil War, victims of Franco's death squads broke what Spaniards call 'the pact of forgetting'. " +
                             "Giles Tremlett embarked on a journey around the country to discover why some of Europe's most voluble people have kept silent.",
                     "Bloomsbury USA", 2008, 20.00, 13, 3.11);
+
             Book book37 = new Book("9781626927957", "Toradora! (Light Novel) Vol. 1", yuyukoTakemiya, "Literature & Fiction",
                     "Takasu Ryuuji is a nice guy, but making friends when you've got an unintentionally scary face is tough. " +
                             "Yet, Aisaka Taiga is beautiful, frightening, the girl known as the Palmtop Tiger is the one person in school even scarier than Ryuuji himself.",
                     "Seven Seas", 2018, 13.99, 34, 3.23);
+
             Book book38 = new Book("9781626921887", "Golden Time Vol. 1", yuyukoTakemiya, "Literature & Fiction",
                     "College freshman Tada Banri is looking forward to a new life after losing his memories. Upon enrolling in Tokyo law school, " +
                             "this new direction in Banri’s life stops short when he happens across a person from his past during the school’s opening ceremony.",
                     "Seven Seas", 2015, 24.42, 12, 3.44);
+
             Book book39 = new Book("9781626926585", "Grimgar of Fantasy and Ash (Light Novel) Vol. 1", aoJyumonji, "Literature & Fiction",
                     "Haruhiro awakens among a group of strangers who can only remember their own names. When they make it into the light, they discover Grimgar. " +
                             "Only by cooperating, and learning new skills can they hope to survive in this dangerous land of monsters.",
                     "Seven Seas", 2017, 13.99, 22, 2.98);
+
             Book book40 = new Book("9780316339155", "Is It Wrong to Try to Pick Up Girls in a Dungeon?, Vol. 1 - light novel", fujinoOmori, "Science Fiction & Fantasy",
                     "Is it wrong to face the perils of Dungeon alone? Maybe. Is it wrong to dream of playing hero to maidens in Dungeon? Maybe not. " +
                             "Bell discovers that anything can happen in the labyrinth. The only problem? He's the one who winds up the damsel in distress!",
                     "Yen Press", 2014, 14.00, 12, 1.97);
+
             Book book41 = new Book("9783842025738", "The Rising of the Shield Hero Volume 1", anekoYusagi, "World Literature & Fiction",
                     "Naofumi suddenly finds himself summoned to a parallel universe! He discovers he is one of four heroes tasked with saving the world " +
                             "from its prophesied destruction as the Shield Hero. Naofumi is soon alone, penniless, and betrayed with no one to turn to.",
                     "One Peace Books", 2015, 12.95, 3, 3.52);
+
             Book book42 = new Book("9780316553377", "Konosuba: God's Blessing on This Wonderful World!, Vol. 1: Oh! My Useless Goddess!",
                             natsumeAkatsuki, "",
                             "The catch is that the world is violent by a growing evil! Fortunately, he can choose any one thing to bring with him." +
                             " So he chooses the goddess, Aqua!","Yen On", 2017, 14.00, 9, 3.44);
+
+
+            //Creates and assigns variables for example user shopping carts
+            user1.createCart();
+            user2.createCart();
+            user3.createCart();
+            Cart cart1 = user1.getCart();
+            Cart cart2 = user2.getCart();
+            Cart cart3 = user3.getCart();
+
+            //Adds books to example shopping carts
+            cart1.addBook(book1);
+            cart1.addBook(book13);
+            cart2.addBook(book40);
+            cart2.addBook(book21);
+            cart3.addBook(book22);
+            cart3.addBook(book24);
+
+            //Creates and assigns variables for example user wishlists
+            Wishlist wishlist1 = new Wishlist("My Wishlist", user1, book1);
+            Wishlist wishlist2 = new Wishlist("Books I Want", user2, book29);
+            Wishlist wishlist3 = new Wishlist("Cool books", user3, book10);
+
+            //Adds books to example wishlists
+            wishlist1.addBook(book14);
+            wishlist2.addBook(book11);
+            wishlist3.addBook(book33);
 
             bookRepository.saveAll(
                             List.of(book1, book2, book3, book4, book5, book6, book7, book8 ,book9, book10
@@ -248,7 +295,12 @@ public class Config
                     anekoYusagi, natsumeAkatsuki));
 
             userRepository.saveAll(List.of(user1, user2, user3, user4, user5));
-            cartRepository.saveAll(List.of(user1.getCart(), user2.getCart()));
+            
+            /*This code is currently commented out because the Wishlist class and Cart class have not been modeled
+            in Spring Boot, so they are not serialized and this code does not work. When the classes have been
+            serialized, this code can be uncommented.*/
+//            cartRepository.saveAll(List.of(cart1, cart2, cart3);
+//            wishlistRepository.saveAll(List.of(wishlist1, wishlist2, wishlist3));
 
 
         };
