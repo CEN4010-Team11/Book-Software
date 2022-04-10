@@ -12,14 +12,6 @@ import java.util.ArrayList;
 @Table
 public class Cart {
 
-    @OneToOne
-    @JoinColumn(
-            name = "user_id",
-            referencedColumnName = "id"
-    )
-    @JsonIgnoreProperties({"cart", "password", "address"})
-    private User user;
-
     @Id
     @SequenceGenerator(
             name = "cart_sequence",
@@ -33,17 +25,32 @@ public class Cart {
     @Column(name = "id", updatable = false)
     private Long ID;
 
-    private ArrayList<Book> bookList = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(
+            name = "user_id",
+            referencedColumnName = "id"
+    )
+    @JsonIgnoreProperties({"cart", "password", "address"})
+    private User user;
+
+    private ArrayList<String> bookList = new ArrayList<>();
 
     public Cart(){}
+
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
 
     public Cart(User user){
         this.user = user;
     }
 
-    public void addBook(Book title){
+    public void addBook(String title){
         bookList.add(title);
-
     }
     public void setUser(User user){
         this.user = user;
@@ -53,12 +60,12 @@ public class Cart {
         return user;
     }
 
-    public ArrayList<Book> getList(){
+    public ArrayList<String> getList(){
         return bookList;
     }
 
-    public void removeBook(Book name){
-        bookList.remove(name);
+    public void removeBook(int index){
+        bookList.remove(index);
     }
     public void purchase(){
         //incrementSales();
