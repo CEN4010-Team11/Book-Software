@@ -61,15 +61,15 @@ public class BookController {
     public List<Book> getBooksByAuthor(@PathVariable Long author_id){
         return bookService.getBooksByAuthor(author_id);
     }
+    
+     @GetMapping("/ISBN/{ISBN}")
+    public Optional<Book> getBookByISBN(@PathVariable String ISBN) {
+        return bookService.getBookByISBN(ISBN);
+    }
 
     @GetMapping("/top")
     public Page<Book> getTopSellers(){
         return bookService.getTopSellers();
-    }
-
-    @GetMapping("/ISBN/{ISBN}")
-    public Optional<Book> getBookByISBN(@PathVariable String ISBN) {
-        return bookService.getBookByISBN(ISBN);
     }
 
     @GetMapping("/genre/{genre}")
