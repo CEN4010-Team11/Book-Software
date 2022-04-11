@@ -56,12 +56,12 @@ public class Book
 
     @Column(name = "price", nullable = false)
     private double price;
+        
+    @Column(name = "rating")
+    private double rating;
 
     @Column(name = "sales")
     private int sales;
-
-    @Column(name = "rating")
-    private double rating;
 
     public Book() {
         this.sales = 0;
